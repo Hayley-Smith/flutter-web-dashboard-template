@@ -1,6 +1,6 @@
 const rootRoute = "/";
 
-const overviewPageDisplayName = "Overview";
+const overviewPageDisplayName = "PowerPoint Manager";
 const overviewPageRoute = "/overview";
 
 const driversPageDisplayName = "Drivers";
@@ -19,11 +19,9 @@ class MenuItem {
   MenuItem(this.name, this.route);
 }
 
-
-
 List<MenuItem> sideMenuItemRoutes = [
- MenuItem(overviewPageDisplayName, overviewPageRoute),
- MenuItem(driversPageDisplayName, driversPageRoute),
- MenuItem(clientsPageDisplayName, clientsPageRoute),
- MenuItem(authenticationPageDisplayName, authenticationPageRoute),
+  MenuItem(overviewPageDisplayName, overviewPageRoute),
+/*  MenuItem(driversPageDisplayName, driversPageRoute),
+  MenuItem(clientsPageDisplayName, clientsPageRoute), */
+  MenuItem(authenticationPageDisplayName, authenticationPageRoute),
 ];

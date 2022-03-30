@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_web_dashboard/helpers/reponsiveness.dart';
 import 'package:flutter_web_dashboard/constants/controllers.dart';
-import 'package:flutter_web_dashboard/pages/overview/widgets/available_drivers_table.dart';
-import 'package:flutter_web_dashboard/pages/overview/widgets/overview_cards_large.dart';
-import 'package:flutter_web_dashboard/pages/overview/widgets/overview_cards_medium.dart';
-import 'package:flutter_web_dashboard/pages/overview/widgets/overview_cards_small.dart';
-import 'package:flutter_web_dashboard/pages/overview/widgets/revenue_section_large.dart';
+import 'package:flutter_web_dashboard/helpers/reponsiveness.dart';
+import 'package:flutter_web_dashboard/pages/Layouts/4x4/four_by_four_layout.dart';
+import 'package:flutter_web_dashboard/pages/overview/widgets/choose_layout_dropdown.dart';
 import 'package:flutter_web_dashboard/widgets/custom_text.dart';
 import 'package:get/get.dart';
-
-import 'widgets/revenue_section_small.dart';
 
 class OverviewPage extends StatelessWidget {
   @override
@@ -21,36 +16,72 @@ class OverviewPage extends StatelessWidget {
             () => Row(
               children: [
                 Container(
-                    margin: EdgeInsets.only(
-                        top: ResponsiveWidget.isSmallScreen(context) ? 56 : 6),
-                    child: CustomText(
-                      text: menuController.activeItem.value,
-                      size: 24,
-                      weight: FontWeight.bold,
-                    )),
+                  margin: EdgeInsets.only(
+                      top: ResponsiveWidget.isSmallScreen(context) ? 56 : 6),
+                  child: CustomText(
+                    text: menuController.activeItem.value,
+                    size: 24,
+                    weight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
           ),
-          Expanded(
-              child: ListView(
-            children: [
-              if (ResponsiveWidget.isLargeScreen(context) ||
-                  ResponsiveWidget.isMediumScreen(context))
-                if (ResponsiveWidget.isCustomSize(context))
-                  OverviewCardsMediumScreen()
-                else
-                  OverviewCardsLargeScreen()
-              else
-                OverviewCardsSmallScreen(),
-              if (!ResponsiveWidget.isSmallScreen(context))
-                RevenueSectionLarge()
-              else
-                RevenueSectionSmall(),
-
-                AvailableDriversTable(),
-             
-            ],
-          ))
+          Center(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: 50,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      ChooseLayoutDropdown(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(
+                            Icons.arrow_back,
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: Text("Previous Slide "),
+                          ),
+                          TextButton(
+                              onPressed: () {}, child: Text(" Next Slide")),
+                          Icon(
+                            Icons.arrow_forward,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(Icons.save),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(Icons.person_add),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(Icons.file_download),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(Icons.upload_file),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Container(child: FourByFourLayout()),
+              ],
+            ),
+          ),
         ],
       ),
     );
